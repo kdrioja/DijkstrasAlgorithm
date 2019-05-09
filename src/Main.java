@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -7,8 +8,9 @@ public class Main {
         printNodes(nodes);
         Random rand = new Random();
 
-        for (int i = 0; i < 20; i++) {
-            System.out.println(rand.nextDouble());
+        for (int i = 0; i < 100; i++) {
+            //System.out.println(rand.nextDouble());
+            System.out.println(generateWeight(5));
         }
     }
 
@@ -40,5 +42,32 @@ public class Main {
         System.out.println(nodes[nodes.length - 1] + "}");
     }
 
+    public static void printEdges(ArrayList<Edge> edges) {
+        System.out.print("Edge list: {");
 
+        for (int i = 0; i < edges.size(); i++) {
+            
+        }
+    }
+
+    public static ArrayList<Edge> generateEdges(int n) {
+        double probability = 0.25;
+        Random rand = new Random();
+        ArrayList<Edge> edges = new ArrayList<>();
+
+        for (int i = 1; i < n; i++) {
+            for (int j = i + 1; j <= n; j++) {
+                if (rand.nextDouble() <= probability) {
+                    edges.add(new Edge(i, j, generateWeight(n)));
+                }
+            }
+        }
+        return edges;
+    }
+
+    public static int generateWeight(int n) {
+        int min = 1, max = 5 * n;
+        Random rand = new Random();
+        return rand.nextInt((max - min) + 1) + min;
+    }
 }
