@@ -1,9 +1,15 @@
+import java.util.Random;
 import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
         int[] nodes = generateNodes();
         printNodes(nodes);
+        Random rand = new Random();
+
+        for (int i = 0; i < 20; i++) {
+            System.out.println(rand.nextDouble());
+        }
     }
 
     public static int[] generateNodes() {
@@ -33,4 +39,6 @@ public class Main {
         }
         System.out.println(nodes[nodes.length - 1] + "}");
     }
+
+
 }
