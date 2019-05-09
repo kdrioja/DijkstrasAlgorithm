@@ -1,6 +1,4 @@
-import java.util.ArrayList;
-import java.util.Random;
-import java.util.Scanner;
+import java.util.*;
 
 public class Main {
     public static void main(String[] args) {
@@ -10,6 +8,9 @@ public class Main {
         printEdges(edges);
 
         calculatePaths(nodes.length, edges);
+
+
+
 
 
 
@@ -51,6 +52,21 @@ public class Main {
 
 
     public static void calculateShortestPath(int n, ArrayList<Edge> edges, int start, int destination) {
+        Set<Integer> visited = new HashSet<>();
+
+        int[][] adjacency = new int[n][2];
+        for (int i  = 1; i <= n; i++) {
+            adjacency[i - 1][0] = i;
+            adjacency[i - 1][1] = Integer.MAX_VALUE;
+        }
+        adjacency[start -1][1] = 0;
+
+        for (int i = 0; i < adjacency.length; i++) {
+            System.out.println(adjacency[i][0] + ": " + adjacency[i][1]);
+        }
+
+        int currentNode = start;
+        visited.add(currentNode);
 
     }
 
