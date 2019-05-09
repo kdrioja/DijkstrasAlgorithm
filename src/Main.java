@@ -9,7 +9,7 @@ public class Main {
         ArrayList<Edge> edges = generateEdges(nodes.length);
         printEdges(edges);
 
-
+        calculatePaths(nodes.length, edges);
 
 
 
@@ -17,6 +17,41 @@ public class Main {
             //System.out.println(rand.nextDouble());
             //System.out.println(generateWeight(5));
         }
+    }
+
+
+    public static void calculatePaths(int n, ArrayList<Edge> edges) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter start node: ");
+        int start = scanner.nextInt();
+
+        while (start <= 0 || start > n) {
+            System.out.println("Not a valid start node.");
+            System.out.print("Enter start node: ");
+            start = scanner.nextInt();
+        }
+
+        System.out.print("Enter destination node: ");
+        int destination = scanner.nextInt();
+
+        while (destination <= 0 || destination > n) {
+            System.out.println("Not a valid destination node.");
+            System.out.print("Enter destination node: ");
+            destination = scanner.nextInt();
+        }
+
+        if (start == destination) {
+            System.out.println("Shortest path: " + start + ", with path weight 0");
+            System.out.println("Widest path: " + start + ", with path weight 0");
+        }
+        else {
+            calculateShortestPath(n, edges, start, destination);
+        }
+    }
+
+
+    public static void calculateShortestPath(int n, ArrayList<Edge> edges, int start, int destination) {
+
     }
 
     public static int[] generateNodes() {
@@ -60,7 +95,7 @@ public class Main {
         Random rand = new Random();
         return rand.nextInt((max - min) + 1) + min;
     }
-    
+
 
     public static void printNodes(int[] nodes) {
         System.out.print("Node list: {");

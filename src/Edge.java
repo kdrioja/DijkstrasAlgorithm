@@ -9,6 +9,10 @@ public class Edge {
         this.weight = w;
     }
 
+    public boolean containsNode(int node) {
+        return nodeA == node || nodeB == node;
+    }
+
     public int getNodeA() {
         return nodeA;
     }
