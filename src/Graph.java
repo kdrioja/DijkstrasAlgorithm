@@ -138,8 +138,6 @@ public class Graph {
             LinkedList<Node> path = new LinkedList<>(sourceNode.getPath());
             path.add(sourceNode);
             currentNode.setPath(path);
-            //currentNode.setPath(sourceNode.getPath());
-            //currentNode.getPath().add(sourceNode);
         }
     }
 
