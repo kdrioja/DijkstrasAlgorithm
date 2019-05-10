@@ -36,9 +36,24 @@ public class Main {
             System.out.println("Widest path: " + start + ", with path weight 0");
         }
         else {
-            //calculateShortestPath(n, edges, start, destination);
             Graph graph = generateGraph(n, edges);
-            graph.print();
+            //graph.print();
+
+            Node destinationNode = graph.shortestPath(start, destination);
+
+            if (destinationNode.getPathWeight() < Integer.MAX_VALUE)
+            {
+                System.out.print("Shortest path: ");
+                for (int i = 0; i < destinationNode.getPath().size(); i++) {
+                    System.out.print(destinationNode.getPath().get(i).getName() + " - ");
+                }
+                System.out.println(destination + ", with path weight " + destinationNode.getPathWeight());
+            }
+            else
+            {
+                System.out.println("Shortest path: nodes are not connected");
+            }
+
         }
     }
 
@@ -60,7 +75,7 @@ public class Main {
 
         return graph;
     }
-    
+
 
     public static int[] generateNodes() {
         Scanner scanner = new Scanner(System.in);
@@ -122,6 +137,6 @@ public class Main {
             System.out.print(edges.get(i) + ", ");
         }
 
-        System.out.println(edges.get(edges.size() - 1) + "}");
+        System.out.println(edges.get(edges.size() - 1) + "}\n");
     }
 }

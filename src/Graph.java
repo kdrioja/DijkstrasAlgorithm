@@ -1,7 +1,4 @@
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 public class Graph {
     private Set<Node> nodes;
@@ -17,6 +14,7 @@ public class Graph {
         }
     }
 
+
     public void addNode(Node node) {
         this.nodes.add(node);
     }
@@ -29,6 +27,7 @@ public class Graph {
         }
         return null;
     }
+
 
     public Node shortestPath(int source, int destination) {
         Node sourceNode = null, destinationNode = null;
@@ -57,7 +56,7 @@ public class Graph {
                 int edgeWeight = adjacentNode.getValue();
 
                 if (!visitedNodes.contains(currentAdjacentNode)) {
-                    setSmallestPath(sourceNode, currentAdjacentNode, edgeWeight);
+                    setSmallestPath(currentNode, currentAdjacentNode, edgeWeight);
                     seenNodes.add(currentAdjacentNode);
                 }
             }
@@ -70,8 +69,11 @@ public class Graph {
     public void setSmallestPath(Node sourceNode, Node currentNode, int edgeWeight) {
         if (currentNode.getPathWeight() > edgeWeight + sourceNode.getPathWeight()) {
             currentNode.setPathWeight(edgeWeight + sourceNode.getPathWeight());
-            currentNode.setPath(sourceNode.getPath());
-            currentNode.getPath().add(sourceNode);
+            LinkedList<Node> path = new LinkedList<>(sourceNode.getPath());
+            path.add(sourceNode);
+            currentNode.setPath(path);
+            //currentNode.setPath(sourceNode.getPath());
+            //currentNode.getPath().add(sourceNode);
         }
     }
 
@@ -86,7 +88,6 @@ public class Graph {
                 smallestWeightNode = node;
             }
         }
-
         return smallestWeightNode;
     }
 }
