@@ -8,27 +8,6 @@ public class Main {
         printEdges(edges);
 
         calculatePaths(nodes.length, edges);
-
-        Set<Integer> s = new HashSet<>();
-        s.add(1);
-        s.add(2);
-        s.add(3);
-        s.add(4);
-        s.add(5);
-
-        Iterator<Integer> iter = s.iterator();
-
-        while(iter.hasNext()) {
-            System.out.println(iter.next());
-        }
-
-
-
-
-        for (int i = 0; i < 100; i++) {
-            //System.out.println(rand.nextDouble());
-            //System.out.println(generateWeight(5));
-        }
     }
 
 
@@ -57,29 +36,31 @@ public class Main {
             System.out.println("Widest path: " + start + ", with path weight 0");
         }
         else {
-            calculateShortestPath(n, edges, start, destination);
+            //calculateShortestPath(n, edges, start, destination);
+            Graph graph = generateGraph(n, edges);
+            graph.print();
         }
     }
 
 
-    public static void calculateShortestPath(int n, ArrayList<Edge> edges, int start, int destination) {
-        Set<Integer> visited = new HashSet<>();
+    public static Graph generateGraph(int n, ArrayList<Edge> edges) {
+        Graph graph = new Graph();
 
-        int[][] adjacency = new int[n][2];
-        for (int i  = 1; i <= n; i++) {
-            adjacency[i - 1][0] = i;
-            adjacency[i - 1][1] = Integer.MAX_VALUE;
-        }
-        adjacency[start -1][1] = 0;
-
-        for (int i = 0; i < adjacency.length; i++) {
-            System.out.println(adjacency[i][0] + ": " + adjacency[i][1]);
+        for (int i = 1; i <= n; i++) {
+            graph.addNode(new Node(i));
         }
 
-        int currentNode = start;
-        visited.add(currentNode);
+        for (int i = 0; i < edges.size(); i++) {
+            Edge currentEdge = edges.get(i);
+            Node nodeA = graph.getNodeWithName(currentEdge.getNodeA());
+            Node nodeB = graph.getNodeWithName(currentEdge.getNodeB());
+            nodeA.addAdjacentNode(nodeB, currentEdge.getWeight());
+            nodeB.addAdjacentNode(nodeA, currentEdge.getWeight());
+        }
 
+        return graph;
     }
+    
 
     public static int[] generateNodes() {
         Scanner scanner = new Scanner(System.in);

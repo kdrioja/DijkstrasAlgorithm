@@ -11,10 +11,24 @@ public class Graph {
     }
 
 
+    public void print() {
+        for (Node node : this.nodes) {
+            System.out.println(node);
+        }
+    }
+
     public void addNode(Node node) {
         this.nodes.add(node);
     }
 
+
+    public Node getNodeWithName(int name) {
+        for (Node node : this.nodes) {
+            if (node.getName() == name)
+                return node;
+        }
+        return null;
+    }
 
     public Node shortestPath(int source, int destination) {
         Node sourceNode = null, destinationNode = null;
