@@ -1,3 +1,8 @@
+/**
+ * Kenia Rioja-Naranjo
+ * CSC 401 Project 2
+ */
+
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;

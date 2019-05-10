@@ -1,3 +1,8 @@
+/**
+ * Kenia Rioja-Naranjo
+ * CSC 401 Project 2
+ */
+
 public class Edge {
     private int nodeA;
     private int nodeB;
