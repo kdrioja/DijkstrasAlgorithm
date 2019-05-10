@@ -37,7 +37,6 @@ public class Main {
         }
         else {
             Graph graph = generateGraph(n, edges);
-            //graph.print();
 
             Node destinationNode = graph.shortestPath(start, destination);
 
@@ -51,7 +50,21 @@ public class Main {
             }
             else
             {
-                System.out.println("Shortest path: nodes are not connected");
+                System.out.println("Shortest path: destination node is not reachable");
+            }
+
+            Node widestDestinationNode = graph.widestPath(start, destination);
+            if (widestDestinationNode.getPathWeight() > Integer.MIN_VALUE)
+            {
+                System.out.print("Widest path: ");
+                for (int i = 0; i < widestDestinationNode.getPath().size(); i++) {
+                    System.out.print(widestDestinationNode.getPath().get(i).getName() + " - ");
+                }
+                System.out.println(destination + ", with path weight " + widestDestinationNode.getPathWeight());
+            }
+            else
+            {
+                System.out.println("Widest path: destination node is not reachable");
             }
 
         }

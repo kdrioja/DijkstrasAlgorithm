@@ -29,6 +29,67 @@ public class Graph {
     }
 
 
+    public Node widestPath(int source, int destination) {
+        Node sourceNode = null, destinationNode = null;
+        Iterator<Node> iterator = this.nodes.iterator();
+        Set<Node> visitedNodes = new HashSet<>();
+        Set<Node> seenNodes = new HashSet<>();
+
+        while (iterator.hasNext()) {
+            Node current = iterator.next();
+            current.setPathWeight(Integer.MIN_VALUE);
+
+            if (current.getName() == source)
+                sourceNode = current;
+            if (current.getName() == destination)
+                destinationNode = current;
+        }
+
+        sourceNode.setPathWeight(0);
+        seenNodes.add(sourceNode);
+
+        while (!seenNodes.isEmpty()) {
+            Node currentNode = getLargestWeight(seenNodes);
+            seenNodes.remove(currentNode);
+
+            for (Map.Entry<Node, Integer> adjacentNode : currentNode.getAdjacentNodes().entrySet()) {
+                Node currentAdjacentNode = adjacentNode.getKey();
+                int edgeWeight = adjacentNode.getValue();
+
+                if (!visitedNodes.contains(currentAdjacentNode)) {
+                    setWidestPath(currentNode, currentAdjacentNode, edgeWeight);
+                    seenNodes.add(currentAdjacentNode);
+                }
+            }
+            visitedNodes.add(currentNode);
+        }
+        return destinationNode;
+    }
+
+
+    public void setWidestPath(Node sourceNode, Node currentNode, int edgeWeight) {
+        if (currentNode.getPathWeight() < edgeWeight + sourceNode.getPathWeight()) {
+            currentNode.setPathWeight(edgeWeight + sourceNode.getPathWeight());
+            LinkedList<Node> path = new LinkedList<>(sourceNode.getPath());
+            path.add(sourceNode);
+            currentNode.setPath(path);
+        }
+    }
+
+
+    public Node getLargestWeight(Set<Node> setofNodes) {
+        int largestWeight = Integer.MIN_VALUE;
+        Node largestWeightNode = null;
+
+        for (Node node : setofNodes) {
+            if (node.getPathWeight() > largestWeight) {
+                largestWeight = node.getPathWeight();
+                largestWeightNode = node;
+            }
+        }
+        return largestWeightNode;
+    }
+
     public Node shortestPath(int source, int destination) {
         Node sourceNode = null, destinationNode = null;
         Iterator<Node> iterator = this.nodes.iterator();
