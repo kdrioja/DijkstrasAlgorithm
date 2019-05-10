@@ -1,5 +1,6 @@
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.Map;
 import java.util.Set;
 
 public class Graph {
@@ -37,12 +38,29 @@ public class Graph {
             Node currentNode = getSmallestWeight(seenNodes);
             seenNodes.remove(currentNode);
 
+            for (Map.Entry<Node, Integer> adjacentNode : currentNode.getAdjacentNodes().entrySet()) {
+                Node currentAdjacentNode = adjacentNode.getKey();
+                int edgeWeight = adjacentNode.getValue();
+
+                if (!visitedNodes.contains(currentAdjacentNode)) {
+
+                }
+            }
         }
 
 
 
 
         return destinationNode;
+    }
+
+
+    public void setSmallestPath(Node sourceNode, Node currentNode, int edgeWeight) {
+        if (currentNode.getPathWeight() > edgeWeight + sourceNode.getPathWeight()) {
+            currentNode.setPathWeight(edgeWeight + sourceNode.getPathWeight());
+            currentNode.setPath(sourceNode.getPath());
+            currentNode.getPath().add(sourceNode);
+        }
     }
 
 
