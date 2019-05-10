@@ -43,14 +43,12 @@ public class Graph {
                 int edgeWeight = adjacentNode.getValue();
 
                 if (!visitedNodes.contains(currentAdjacentNode)) {
-
+                    setSmallestPath(sourceNode, currentAdjacentNode, edgeWeight);
+                    seenNodes.add(currentAdjacentNode);
                 }
             }
+            visitedNodes.add(currentNode);
         }
-
-
-
-
         return destinationNode;
     }
 
