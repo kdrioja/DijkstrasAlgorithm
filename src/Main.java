@@ -9,7 +9,18 @@ public class Main {
 
         calculatePaths(nodes.length, edges);
 
+        Set<Integer> s = new HashSet<>();
+        s.add(1);
+        s.add(2);
+        s.add(3);
+        s.add(4);
+        s.add(5);
 
+        Iterator<Integer> iter = s.iterator();
+
+        while(iter.hasNext()) {
+            System.out.println(iter.next());
+        }
 
 
 

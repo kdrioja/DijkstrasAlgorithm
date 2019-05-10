@@ -9,10 +9,12 @@ public class Node {
     private int pathWeight;
     private Map<Node, Integer> adjacentNodes;
 
+    public Node(){}
+
     public Node(int name) {
         this.name = name;
         this.path = new LinkedList<>();
-        this.pathWeight = 0;
+        this.pathWeight = Integer.MAX_VALUE;
         this.adjacentNodes = new HashMap<>();
     }
     public void addAdjacentNode(Node newNode, int weight) {
